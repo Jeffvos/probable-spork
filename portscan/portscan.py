@@ -8,12 +8,20 @@ def target_scan(target):
 def scan(ipaddress, port):
     try:
         validated_ip = validate_ip(ipaddress)
-        sock = socket.socket()
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(0.5)
         sock.connect((validated_ip, port))
-        print(f'[+] Port {port} is open - {ipaddress}')
+        try:
+            banner = get_banner(sock)
+            print(f'[+] Port {port} is open - {ipaddress} - {banner}')
+        except:
+            print(f'[+] Port {port} is open - {ipaddress}')
     except:
         print(f'[-] Failed port {port} closed - {ipaddress}')
+
+def get_banner(so):
+    print(f'so {so.recv(1024).decode()}')
+    return so.recv(1024).decode()
 
 def validate_ip(ip):
     try:
