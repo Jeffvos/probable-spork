@@ -29,6 +29,7 @@ if __name__ == "__main__":
     port_end = int(input('[+] End of the port range: ')) + 1
     if ',' in target:
         for ipadd in target.split(','):
+            print("\n")
             for port in range(port_start, port_end):
                 scan(ipaddress=ipadd.strip(' '), port=port)
     else:
