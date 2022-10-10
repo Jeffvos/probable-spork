@@ -8,7 +8,7 @@ def scan(ipaddress, port):
         sock.connect((ipaddress, port))
         print(f'[+] Port {port} is open')
     except:
-        print(f'[+] Failed port {port} closed')
+        print(f'[-] Failed port {port} closed')
 
 if __name__ == "__main__":
     ipaddress = input('[+] Enter target ip ')
